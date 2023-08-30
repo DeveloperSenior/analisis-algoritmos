@@ -18,6 +18,8 @@ public class Main {
             System.out.println("-------------------------");
             System.out.println("1: Crear Aerolineas");
             System.out.println("2: Mostrar Aerolineas");
+            System.out.println("3: Crear Vuelos a Aerolineas");
+            System.out.println("4: Mostrar Vuelos x Aerolineas");
             System.out.println("0: Salir");
             System.out.println("-------------------------");
             Scanner sc = new Scanner(System.in);
@@ -37,6 +39,12 @@ public class Main {
                       break;
                   case 2:
                       mostrarAerolineas();
+                      break;
+                  case 3:
+                      crearVuelos();
+                      break;
+                  case 4:
+                      mostrarVuelosXAerolineas();
                       break;
               }
         }
@@ -63,6 +71,13 @@ public class Main {
 
     }
 
+    public static void mostrarVuelosXAerolineas(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Ingrese codigo de la aerolinea");
+        String codigo = sc.nextLine();
+        aerolineas.showVuelos(codigo);
+    }
+
     public static void mostrarAerolineas(){
         aerolineas.show();
     }
@@ -74,16 +89,27 @@ public class Main {
         boolean exit = false;
         System.out.println("------------ Creación Vuelos --------------");
         do{
-            System.out.println("Ingrese código: ");
-            String codigo = sc.nextLine();
-            System.out.println("Ingrese horario (dd/mm/yyyy hh24:mi): ");
-            String horario = sc.nextLine();
-            System.out.println("Tipo avión: ");
-            String tipoAvion = sc.nextLine();
-            Vuelo vuelo = new Vuelo(codigo,horario,tipoAvion);
-            vuelos.add(vuelo,pasajeros);
-            System.out.println("Desea crear otro vuelo? 1: Si, 0: No");
-            exit = (sc.nextInt() != 1);
+            System.out.println("Ingrese código de la aerolinea: ");
+            String codigoAerolinea = sc.nextLine();
+
+            Aerolinea buscada = aerolineas.buscarAerolinea(codigoAerolinea);
+
+            if (buscada == null){
+                System.out.println("La Aerolinea ingresada no existe");
+            }else {
+
+                System.out.println("Ingrese código: ");
+                String codigo = sc.nextLine();
+                System.out.println("Ingrese horario (dd/mm/yyyy hh24:mi): ");
+                String horario = sc.nextLine();
+                System.out.println("Tipo avión: ");
+                String tipoAvion = sc.nextLine();
+                Vuelo vuelo = new Vuelo(codigo, horario, tipoAvion);
+                vuelos.add(vuelo, pasajeros);
+                buscada.setLigaVuelos(vuelos.inicio);
+                System.out.println("Desea crear otro vuelo? 1: Si, 0: No");
+                exit = (sc.nextInt() != 1);
+            }
         }while(!exit);
 
         return vuelos;

@@ -14,6 +14,7 @@ public class Vuelo {
     Pasajero ligaPasajero;
 
     public Vuelo(String codigo,String horario, String tipoAvion) {
+        this.codigo = codigo;
         this.horario = horario;
         this.tipoAvion = tipoAvion;
         this.liga = null;
