@@ -19,7 +19,7 @@ public class Aerolineas {
         return this;
     }
 
-    public Aerolineas add(Aerolinea newAerolinea, Vuelos vuelos){
+    public Aerolineas insertar(Aerolinea newAerolinea, Vuelos vuelos){
 
         Aerolinea aux = this.inicio;
         if (this.inicio == null){
@@ -36,7 +36,7 @@ public class Aerolineas {
 
     }
 
-    public void show(){
+    public void mostrarAerolineas(){
         Aerolinea aux = this.inicio;
         if (this.inicio == null){
             System.out.println("No existen aerolineas creadas");
@@ -57,7 +57,7 @@ public class Aerolineas {
 
     }
 
-    public void showVuelos(String codigoAerolinea){
+    public void mostrarVuelosAerolinea(String codigoAerolinea){
         Aerolinea auxAerolinea = this.inicio;
         Vuelo auxVuelos = auxAerolinea.getLigaVuelos();
         if (this.inicio == null){
@@ -88,7 +88,7 @@ public class Aerolineas {
             System.out.println("\n--------------------------------");
     }
 
-    public Aerolinea buscarAerolinea(String codigo){
+    public Aerolinea buscar(String codigo){
         Aerolinea aux = this.inicio;
         Aerolinea nodoEncontrado = null;
         if (this.inicio == null){
@@ -103,6 +103,66 @@ public class Aerolineas {
             }
         }
         return nodoEncontrado;
+    }
+
+    public Aerolineas eliminar(String codigo){
+
+        Aerolinea aux = this.inicio;
+        Aerolinea nodoEncontrado = null;
+        Aerolinea nodoAnterior = this.inicio;
+        if (this.inicio == null){
+            System.out.println("No existen aerolineas creadas");
+        }else{
+            while (aux != null){
+                if (aux.getCodigo().equalsIgnoreCase(codigo)){
+                    nodoEncontrado = aux;
+                    break;
+                }
+                nodoAnterior = aux;
+                aux = aux.getLiga();
+            }
+        }
+
+        if (nodoEncontrado == null){
+            System.out.println("No existe la aerolineas que desea actualizar");
+        }else{
+            if(nodoEncontrado == this.inicio){
+                this.inicio = nodoEncontrado.getLiga();
+            }else {
+                nodoAnterior.setLiga(nodoEncontrado.getLiga());
+            }
+            nodoEncontrado = null;
+            System.gc();
+        }
+
+        return this;
+
+    }
+
+    public Aerolineas actualizar(Aerolinea aerolinea){
+
+        Aerolinea aux = this.inicio;
+        Aerolinea nodoEncontrado = null;
+        if (this.inicio == null){
+            System.out.println("No existen aerolineas creadas");
+        }else{
+            while (aux != null){
+                if (aux.getCodigo().equalsIgnoreCase(aerolinea.getCodigo())){
+                    nodoEncontrado = aux;
+                    break;
+                }
+                aux = aux.getLiga();
+            }
+        }
+
+        if (nodoEncontrado == null){
+            System.out.println("No existe la aerolineas que desea eliminar");
+        }else{
+            nodoEncontrado.setNombre(aerolinea.getNombre());
+        }
+
+        return this;
+
     }
 
 }
