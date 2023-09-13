@@ -7,7 +7,11 @@ public class Pasajeros {
     public Pasajero inicio;
 
     public Pasajeros() {
-        this.inicio = null;
+        this(null);
+    }
+
+    public Pasajeros(Pasajero inicio){
+        this.inicio = inicio;
     }
 
     public Pasajeros insertarCabeza(Pasajero newPasajero){

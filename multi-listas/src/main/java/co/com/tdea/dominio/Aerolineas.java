@@ -57,6 +57,25 @@ public class Aerolineas {
 
     }
 
+    public void mostrarAerolineasReserva(){
+        Aerolinea aux = this.inicio;
+        if (this.inicio == null){
+            System.out.println("No existen aerolineas creadas");
+        }else{
+            System.out.println("--------------Lista------------------");
+            while (aux != null){
+                System.out.println("\n");
+                System.out.println("|------------------------------|");
+                System.out.println("| Codigo: "+ aux.getCodigo());
+                System.out.println("| Nombre: "+ aux.getNombre());
+                System.out.println("|------------------------------|");
+                aux = aux.getLiga();
+            }
+            System.out.println("\n--------------------------------");
+        }
+
+    }
+
     public void mostrarVuelosAerolinea(String codigoAerolinea){
         Aerolinea auxAerolinea = this.inicio;
         Vuelo auxVuelos = auxAerolinea.getLigaVuelos();
@@ -86,6 +105,35 @@ public class Aerolineas {
             }
         }
             System.out.println("\n--------------------------------");
+    }
+
+    public void mostrarVuelosAerolineaReserva(String codigoAerolinea){
+        Aerolinea auxAerolinea = this.inicio;
+        Vuelo auxVuelos = auxAerolinea.getLigaVuelos();
+        if (this.inicio == null){
+            System.out.println("No existen aerolineas creadas");
+        }else{
+            System.out.println("--------------Lista Vuelos Aerolinea "+codigoAerolinea+"------------------");
+            while (auxAerolinea != null) {
+                if (auxAerolinea.getCodigo().equalsIgnoreCase(codigoAerolinea)) {
+                    while (auxVuelos != null) {
+                        System.out.println("\n");
+                        System.out.println("|------------------------------|");
+                        System.out.println("| Codigo: " + auxVuelos.getCodigo());
+                        System.out.println("| Horario: " + auxVuelos.getHorario());
+                        System.out.println("| Avion: " + auxVuelos.getTipoAvion());
+                        System.out.println("|------------------------------|");
+                        auxVuelos = auxVuelos.getLiga();
+                    }
+                    break;
+                }
+                auxAerolinea = auxAerolinea.getLiga();
+            }
+            if (auxAerolinea == null){
+                System.out.println("No existen la aerolineas ingresada");
+            }
+        }
+        System.out.println("\n--------------------------------");
     }
 
     public Aerolinea buscar(String codigo){

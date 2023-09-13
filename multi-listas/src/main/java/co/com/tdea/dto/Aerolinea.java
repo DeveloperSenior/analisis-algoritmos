@@ -1,8 +1,10 @@
 package co.com.tdea.dto;
 
 import lombok.Data;
+import lombok.ToString;
 
 @Data
+@ToString
 public class Aerolinea {
     /*atributos nodo*/
     String codigo;

@@ -8,7 +8,10 @@ public class Vuelos {
     public Vuelo inicio;
 
     public Vuelos() {
-        this.inicio = null;
+        this(null);
+    }
+    public Vuelos(Vuelo inicio) {
+        this.inicio = inicio;
     }
 
     Vuelos insertarCabeza(Vuelo newVuelo, Pasajeros pasajeros ){

@@ -80,6 +80,10 @@ public class MaestroVuelo extends MenuBase{
                 System.out.println("Tipo avión: ");
                 String tipoAvion = sc.nextLine();
                 Vuelo vuelo = new Vuelo(codigo, horario, tipoAvion);
+                Vuelo inicioListaVuelos = buscada.getLigaVuelos();
+                if (inicioListaVuelos!= null){
+                    vuelos.inicio = inicioListaVuelos;
+                }
                 vuelos.insertar(vuelo, pasajeros);
                 buscada.setLigaVuelos(vuelos.inicio);
                 System.out.println("Desea crear otro vuelo? 1: Si, 0: No");
